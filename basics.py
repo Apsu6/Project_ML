@@ -114,5 +114,89 @@ def binary_search(arr, target):
 binary_arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 # print(binary_search(binary_arr, 7))
-# Returns 6
+# Returns index 6
+
+# Sorting algorithms, bubble sort is the first exampl.
+
+
+def bubble_sort(arr):
+    swapped = True
+    while swapped:
+        swapped = False
+        for i in range(len(arr) - 1):
+            if arr[i] > arr[i + 1]:
+                arr[i], arr[i + 1] = arr[i + 1], arr[i]
+                swapped = True
+    return arr
+
+
+#print(bubble_sort([64, 34, 25, 12, 22, 11, 90]))
+
+
+#merge sort is the next example, which is a divide and conquer algorithm.
+
+def merge(left, right):
+    result = []
+    i = j = 0
+
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    result.extend(left[i:])
+    result.extend(right[j:])
+
+    return result
+
+
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    mid = len(arr) // 2
+    left_half = merge_sort(arr[:mid])
+    right_half = merge_sort(arr[mid:])
+
+    return merge(left_half, right_half)
+
+
+#print(merge_sort([38, 27, 43, 3, 9, 82, 10]))
+
+
+#Insertion sort is another example of a sorting algorithm, which is efficient for small datasets.
+
+
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+    return arr
+
+#print(insertion_sort([64, 34, 25, 12, 22, 11, 90]))
+
+
+#quick sort is another example of a sorting algorithm, which is efficient for large datasets.
+
+
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+
+    return quick_sort(left) + middle + quick_sort(right)
+
+#print(quick_sort([64, 4, 25, 12, 22, 11, 90]))
+
 
